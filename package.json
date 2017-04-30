@@ -1,0 +1,15 @@
+{
+  "name": "JAETE",
+  "version": "0.0.1",
+  "description": "Just Another Encrypted Text Editor",
+  "main": "main.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "author": "Daniel Scheufler",
+  "license": "MIT"
+}
