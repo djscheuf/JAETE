@@ -1,16 +1,25 @@
 body {
-  background-color: gray
+  background-color: #3e3e3e
 }
 
 h1 {
-    color: lightgreen;
+    color: #6dd634;
     text-align: center;
 }
+
 p {
+  color: white;
   text-align: center;
 }
+
 counter {
-    color: lightgreen;
+    color: #6dd634;
     text-decoration: underline;
-    font-size: 20
+}
+
+.icon {
+  background: url('../img/JAETEx64.png') no-repeat scroll 0 0 transparent;
+  height: 64px;
+  padding-left: 96px;
+  align-content: center;
 }

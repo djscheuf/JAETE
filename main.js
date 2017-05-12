@@ -17,10 +17,20 @@ app.on('window-all-closed', function() {
 // initialization and is ready to create browser windows.
 app.on('ready', function() {
     // Create the browser window.
-    mainWindow = new BrowserWindow({width: 900, height: 600, icon: __dirname + '/img/JAETEx256.png'});
+    mainWindow = new BrowserWindow(
+      {
+        width: 600,
+        height: 900,
+        toolbar: false,
+        'auto-hide-menu-bar': true,
+        icon: __dirname + '/img/JAETEx256.png'
+      });
 
     // and load the index.html of the app.
     mainWindow.loadURL('file://' + __dirname + '/index.html');
+    mainWindow.setMenuBarVisibility(false);
+    mainWindow.setAutoHideMenuBar(true);
+    //mainWindow.openDevTools();
 
     // Emitted when the window is closed.
     mainWindow.on('closed', function() {
