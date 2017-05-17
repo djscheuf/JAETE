@@ -19,11 +19,11 @@ Phase 0 will lay the groundwork for the project. The Goals are:
 
 Notable tasks for Phase 0 include:
 
-	[ ] Determine the basic UX for JAETE.
+	[X] Determine the basic UX for JAETE.
 		* Generally JAETE ought function like gEdit or similar.
 	[ ] Decide on the look for JAETE
 		* This will involve the majority of my learning of HTML and CSS.
-	[ ] *Perhaps Develop an Icon for JAETE?*
+	[X] *Perhaps Develop an Icon for JAETE?*
 	[ ] Produce an extensible code base which will enable the development of features in Phase 1
 
 #### Phase 1 - Begin Encryption
@@ -49,3 +49,5 @@ Some additional ideas for JAETE to implement:
 	* _Origin_: An article I read discussing replacing Discus comments with comments on Github repos. (I will try to find the link again)
 * Encryption by multiple files
 	* Find some way to merge a trio of files, each being valid, and encrypted, and potentially used to encrypt each other.
+* Prevent user from using 'common' passwords.
+	* Will likely also salt passwords at this point.
