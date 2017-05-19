@@ -2,13 +2,34 @@
   "name": "JAETE",
   "version": "0.0.1",
   "description": "Just Another Encrypted Text Editor",
-  "main": "main.js",
-  "dependencies": {
-  },
-  "devDependencies": {
+  "author":"Daniel Scheufler <daniel.j.scheufler@gmail.com>",
+  "bin":{
+    "JAETE":"./bin/JAETE"
   },
   "scripts": {
-    "start": "electron main.js"
+    "start": "electron main.js",
+    "test": "nodeunit ./.test/"
+  },
+  "main": "main.js",
+  "repository":{
+    "type":"git",
+    "url":"https://github.com/djscheuf/JAETE"
+  },
+  "bugs":
+  {
+    "url":"https://github.com/djscheuf/JAETE/issues"
+  },
+  "keywords": [
+    "encrypted"
+    ,"text editor"
+    ,"electron"
+  ],
+  "dependencies": {
+    "electron":"*"
+  },
+  "devDependencies": {
+    "electron":"*",
+    "nodeunit":"*"
   },
   "author": "Daniel Scheufler",
   "license": "MIT"
