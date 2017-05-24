@@ -2,9 +2,10 @@ var jCrypto = function(){};
 
 const crypto = require('crypto')
 
-jCrypto.prototype.ConfirmCryptoEnabled()
+jCrypto.prototype.ConfirmCryptoEnabled = function()
 {
-	try{
+	try
+	{
 		var crypto = require('crypto');
 		return true;
 	} catch (e){
@@ -14,7 +15,7 @@ jCrypto.prototype.ConfirmCryptoEnabled()
 	}
 }
 
-jCrypto.prototype.encrypt(contents, password)
+jCrypto.prototype.encrypt = function(contents, password)
 {
 	// Pseudo PGP Scheme
 
@@ -35,14 +36,14 @@ jCrypto.prototype.encrypt(contents, password)
 	var keyCipher = crypto.createCipher('sha256',sPassword);
 	var eKey = keyCipher.update(rKey,'utf8','base64');
 	eKey += keyCipher.final('base64');
-	
+
 	// combine eKey and eContents;
 	var output = eKey + '_JAETE_'+eContents;
 
 	return output;
 }
 
-jCrypto.prototype.decrypt(contents, password)
+jCrypto.prototype.decrypt = function(contents, password)
 {
 	// Pseudo PGP Scheme
 
