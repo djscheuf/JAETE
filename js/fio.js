@@ -1,20 +1,23 @@
-// mdoule pattern courtesy of : https://darrenderidder.github.io/talks/ModulePatterns/#/11
+// module pattern courtesy of : https://darrenderidder.github.io/talks/ModulePatterns/#/11
 
-var fio = function(){};
+var fio = function () {};
 
-var fs = require('fs');
+let fs = require('fs');
 
-fio.prototype.FileExists(filePath){
+fio.prototype.FileExists = function(filePath)
+{
 	return fs.existsSync(filePath);
 };
 
-fio.prototype.ReadFile(filePath){
-	if(!FileExists(filePath))
+fio.prototype.ReadFile = function(filePath)
+{
+	if(!this.FileExists(filePath))
 	{
 		alert('File does not exist: ',filePath);
 		return "";
 	}
-	try{
+	try
+	{
 		var data = fs.readFileSync(filePath);
 		return data;
 	} catch (e){
@@ -22,11 +25,14 @@ fio.prototype.ReadFile(filePath){
 	}
 };
 
-fio.prototype.SaveToFile(filePath,contents){
-	if(FleExists(filePath))){
+fio.prototype.SaveToFile = function(filePath,contents)
+{
+	if(this.FileExists(filePath))
+	{
 		console.log('File already exists: ', filePath, 'It will be overwritten.')
 	}
-	try{
+	try
+	{
 		fs.writeFileSync(filePath,contents);
 	} catch (e){
 		alert('An error occured while writing your file: ', e.stack)

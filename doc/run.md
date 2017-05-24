@@ -26,3 +26,6 @@ Once the app is running you can review the information logged to the console by 
 ctrl+shirt+I
 ```
 This will open the dev tools, under which the console resides.
+
+##This was added using JAETE
+As a test of FileIO functionality. Strike the Earth!
