@@ -50,37 +50,47 @@ let encrypt = function(password,contents)
 	return output;
 }
 
-const decrypt = function(contents, password)
+const decrypt = function(password,contents)
 {
-	// Pseudo PGP Scheme
-
-	// hash+salt password
-	var passwordCipher = crypto.createCipher('sha256','Is it Secret? Is it Safe?');
-	var sPassword = contentCipher.update(password,'utf8','base64');
-	sPassword += contentCipher.final('base64');
+	console.log('Preparing: ',
+							contents.substring(0,9),
+							'...\n\twith ',
+							password);
 
 	// split eKey and eContents
 	var arr = contents.split('_JAETE_');
 	var eKey = arr[0];
 	var eContents = arr[1];
+	console.log('\tremove first helping of chaos:',eKey.substring(0,9),'...');
+	console.log('\set aside second helping of chaos:',eContents.substring(0,9),'...');
+
+	// hash+salt password
+	const secret = 'Is it Secret? Is it Safe?';
+	let pCipher = crypto.createCipher('aes192',secret);
+	let sPassword = pCipher.update(password,'ascii','base64');
+			sPassword += pCipher.final('base64');
+  console.log('\tAdd salt:',sPassword.substring(0,9),'...');
+
 
 	// decrypt eKey with saltPassword.
-	var keyDecipher = crypto.createDecipher('sha256',sPassword);
-	var rKey = keyDecipher.update(eKey,'base64','utf8');
-	rKey += keyDecipher.final('utf8');
+	let kCipher = crypto.createDecipher('aes192',sPassword);
+	let rKey = kCipher.update(eKey,'base64','ascii');
+			rKey += kCipher.final('ascii');
+	console.log('\trelax first portion:',rKey.substring(0,9),'...');
 
 	// decrypt eContents with dKey.
-	var contentDecipher = crypto.createDecipher('sha256',rKey);
-	var contents = contentDecipher.update(eContents,'base64','utf8');
-	contents += contentDecipher.final('utf8');
+	let cCipher = crypto.createDecipher('aes192',rKey);
+	let content = cCipher.update(eContents,'base64','ascii');
+			content += cCipher.final('ascii');
+	console.log('\tand then relax second portion:',content.substring(0,9),'...');
 
-	return contents;
+	return content;
 }
 
 module.exports =
 {
 		encrypt: encrypt,
-		//decrypt: decrypt // not ready to use yet.
+		decrypt: decrypt
 }
 // should probably add this to start-up:
 //let crypto;

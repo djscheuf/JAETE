@@ -34,14 +34,14 @@ $('#btn_Load').on('click',() => {
 		var contents = fio.readFile(fn)
     console.log('Loaded: ',contents.substring(0,9),'...');
 
-		/*
 		var ext = path.extname(fn);
-		if(ext === 'etxt'){
+		console.log('Type: ',ext,'...');
+		if(ext === '.etxt'){
 			var psw = $('#txt_Password').val();
       console.log('Decrypting with: ',psw);
-			contents = jCrypto.decrypt(contents,psw);
+			contents = jCrypto.decrypt(psw,contents);
 		}
-		*/
+
 		$('#txt_FileName').val(fn);
     console.log('Presenting: ',contents.substring(0,9),'...');
 		$('#txt_Content').val(contents);
