@@ -1,0 +1,36 @@
+body {
+  background-color: #3e3e3e
+}
+
+h1 {
+    color: #6dd634;
+    text-align: center;
+}
+
+p {
+  color: white;
+  text-align: center;
+}
+
+counter {
+    color: #6dd634;
+    text-decoration: underline;
+}
+
+.JAETEMenu {
+  background: url('../img/JAETEx64.png') no-repeat scroll 0 0 transparent;
+  height: 64px;
+  padding-left: 96px;
+  align-content: center;
+  color: white;
+  text-align: center;
+}
+
+textarea {
+  background-color: lightgray;
+  border: 2px;
+  text-decoration-color: black;
+  width: 100%;
+  height: 800px;
+
+}
