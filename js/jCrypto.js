@@ -1,8 +1,6 @@
-var jCrypto = function(){};
-
 const crypto = require('crypto')
 
-jCrypto.prototype.ConfirmCryptoEnabled = function()
+const ConfirmCryptoEnabled = function()
 {
 	try
 	{
@@ -15,35 +13,44 @@ jCrypto.prototype.ConfirmCryptoEnabled = function()
 	}
 }
 
-jCrypto.prototype.encrypt = function(contents, password)
+let encrypt = function(password,contents)
 {
 	// Pseudo PGP Scheme
-
+	console.log('Preparing: ',
+							contents.substring(0,9),
+							'...\n\twith ',
+							password);
 	// hash+salt password
-	var passwordCipher = crypto.createCipher('sha256','Is it Secret? Is it Safe?');
-	var sPassword = contentCipher.update(password,'utf8','base64');
-	sPassword += contentCipher.final('base64');
+
+	const secret = 'Is it Secret? Is it Safe?';
+	let pCipher = crypto.createCipher('aes192',secret);
+	let sPassword = pCipher.update(password,'ascii','base64');
+			sPassword += pCipher.final('base64');
+	console.log('\tAdd salt:',sPassword.substring(0,9),'...');
 
 	// generate random key
-	var rKey = crypto.randomBytes(256).toString('base64');
+	var rKey = crypto.randomBytes(256).toString('ascii');
 
 	// encrypt contents with random key.
-	var contentCipher = crypto.createCipher('sha256',rKey);
-	var eContents = contentCipher.update(contents,'utf8','base64');
-	eContents += contentCipher.final('base64');
+	let cCipher = crypto.createCipher('aes192',rKey);
+	let eContent = cCipher.update(contents,'ascii','base64');
+			eContent += cCipher.final('base64');
+  console.log('\tstir in some chaos:',eContent.substring(0,9),'...');
 
 	// encrypt random key with saltPassword.
-	var keyCipher = crypto.createCipher('sha256',sPassword);
-	var eKey = keyCipher.update(rKey,'utf8','base64');
-	eKey += keyCipher.final('base64');
+	let kCipher = crypto.createCipher('aes192',sPassword);
+	let eKey = kCipher.update(rKey,'ascii','base64');
+			eKey += kCipher.final('base64');
+  console.log('\tmake that two helpings of chaos:',eKey.substring[0,9],'...');
 
 	// combine eKey and eContents;
-	var output = eKey + '_JAETE_'+eContents;
+	var output = eKey +'_JAETE_'+ eContent;
+	console.log('To get a lovely: ',output.substring(0,9),'...');
 
 	return output;
 }
 
-jCrypto.prototype.decrypt = function(contents, password)
+const decrypt = function(contents, password)
 {
 	// Pseudo PGP Scheme
 
@@ -70,7 +77,11 @@ jCrypto.prototype.decrypt = function(contents, password)
 	return contents;
 }
 
-exports.jCrypto = jCrypto;
+module.exports =
+{
+		encrypt: encrypt,
+		//decrypt: decrypt // not ready to use yet.
+}
 // should probably add this to start-up:
 //let crypto;
 //try {

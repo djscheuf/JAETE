@@ -1,33 +1,30 @@
 // module pattern courtesy of : https://darrenderidder.github.io/talks/ModulePatterns/#/11
+const fs = require('fs');
 
-var fio = function () {};
-
-let fs = require('fs');
-
-fio.prototype.FileExists = function(filePath)
+let fileExists = function(filePath)
 {
 	return fs.existsSync(filePath);
 };
 
-fio.prototype.ReadFile = function(filePath)
+let readFile = function(filePath)
 {
-	if(!this.FileExists(filePath))
+	if(!this.fileExists(filePath))
 	{
 		alert('File does not exist: ',filePath);
 		return "";
 	}
 	try
 	{
-		var data = fs.readFileSync(filePath);
+		var data = fs.readFileSync(filePath).toString();
 		return data;
 	} catch (e){
 		alert('An error occured while reading your file: ', e.stack)
 	}
 };
 
-fio.prototype.SaveToFile = function(filePath,contents)
+let saveToFile = function(filePath,contents)
 {
-	if(this.FileExists(filePath))
+	if(this.fileExists(filePath))
 	{
 		console.log('File already exists: ', filePath, 'It will be overwritten.')
 	}
@@ -40,4 +37,9 @@ fio.prototype.SaveToFile = function(filePath,contents)
 };
 
 // To add a file selected dialog see: https://github.com/nwjs/nw.js/wiki/File-dialogs#other-types-of-dialogs
-exports.Fio = fio;
+module.exports =
+{
+	fileExists: fileExists,
+	readFile: readFile,
+	saveToFile: saveToFile
+}
